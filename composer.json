@@ -1,6 +1,6 @@
 {
   "name": "avenyra/module-currency-api",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "A Magento 2 module that integrates with currencyapi.com to fetch and import real-time currency exchange rates into your Magento store.",
   "type": "magento2-module",
   "license": [
