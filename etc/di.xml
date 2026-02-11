@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * Copyright © Rahul Barot All rights reserved.
+ * Copyright © Avenyra All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -9,9 +9,9 @@
 	<type name="Magento\Directory\Model\Currency\Import\Config">
         <arguments>
             <argument name="servicesConfig" xsi:type="array">
-                <item name="freecurrencyapi" xsi:type="array">
-                    <item name="label" xsi:type="string" translatable="true">Freecurrency Converter API</item>
-                    <item name="class" xsi:type="string">MageRahul\CurrencyConverter\Model\Currency\Import\FreecurrencyConverterApi</item>
+                <item name="av_currencyapi" xsi:type="array">
+                    <item name="label" xsi:type="string" translatable="true">Currency API (currencyapi.com)</item>
+                    <item name="class" xsi:type="string">Avenyra\CurrencyApi\Model\Currency\Import\CurrencyApi</item>
                 </item>
             </argument>
         </arguments>

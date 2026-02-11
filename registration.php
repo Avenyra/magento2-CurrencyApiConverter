@@ -5,5 +5,5 @@
  */
 use Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'MageRahul_CurrencyConverter', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Avenyra_CurrencyApi', __DIR__);
 

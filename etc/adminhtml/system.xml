@@ -1,16 +1,22 @@
 <?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Avenyra All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
 	<system>
         <section id="currency">
-        	<resource>MageRahul_CurrencyConverter::config_rb_currencyconverter</resource>
-            <group id="freecurrencyapi" sortOrder="55" showInDefault="1" translate="label">
-				<label>Freecurrency Converter API</label>
-				<field id="api_key" type="obscure" sortOrder="5" showInDefault="1" translate="label">
+        	<resource>Avenyra_CurrencyApi::config</resource>
+            <group id="currencyapi" sortOrder="55" showInDefault="1" translate="label">
+				<label>CurrencyApi</label>
+				<field id="api_key" type="obscure" sortOrder="10" showInDefault="1" translate="label">
 					<label>API Key</label>
 					<backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
-					<config_path>currency/freecurrencyapi/api_key</config_path>
+					<config_path>currency/currencyapi/api_key</config_path>
 				</field>
-				<field id="timeout" type="text" sortOrder="10" showInDefault="1" translate="label">
+				<field id="timeout" type="text" sortOrder="20" showInDefault="1" translate="label">
 					<label>Connection Timeout in Seconds</label>
 					<comment/>
 				</field>
