@@ -14,8 +14,8 @@ use Magento\Directory\Model\Currency\Import\AbstractImport;
 use Magento\Directory\Model\CurrencyFactory;
 use Magento\Framework\App\Config\ScopeConfigInterface as ScopeConfig;
 use Magento\Framework\Encryption\EncryptorInterface;
-use Magento\Framework\HTTP\LaminasClient;
-use Magento\Framework\HTTP\LaminasClientFactory;
+use Magento\Framework\HTTP\ZendClient;
+use Magento\Framework\HTTP\ZendClientFactory;
 use Magento\Store\Model\ScopeInterface;
 
 /**
@@ -23,14 +23,14 @@ use Magento\Store\Model\ScopeInterface;
  */
 class CurrencyApi extends AbstractImport
 {
-    public const string CURRENCY_CONVERTER_URL = 'https://api.currencyapi.com/v3/latest?apikey={{ACCESS_KEY}}&currencies={{CURRENCY_RATES}}&base_currency={{BASE_CURRENCY}}';
-    private const string CONFIG_PATH_API_KEY = 'currency/currencyapi/api_key';
-    private const string CONFIG_PATH_TIMEOUT = 'currency/currencyapi/timeout';
+    public const CURRENCY_CONVERTER_URL = 'https://api.currencyapi.com/v3/latest?apikey={{ACCESS_KEY}}&currencies={{CURRENCY_RATES}}&base_currency={{BASE_CURRENCY}}';
+    private const CONFIG_PATH_API_KEY = 'currency/currencyapi/api_key';
+    private const CONFIG_PATH_TIMEOUT = 'currency/currencyapi/timeout';
 
     /**
-     * @var LaminasClientFactory
+     * @var ZendClientFactory
      */
-    private LaminasClientFactory $httpClientFactory;
+    private ZendClientFactory $httpClientFactory;
 
     /**
      * Core scope config
@@ -57,13 +57,13 @@ class CurrencyApi extends AbstractImport
     /**
      * @param CurrencyFactory $currencyFactory
      * @param ScopeConfig $scopeConfig
-     * @param LaminasClientFactory $httpClientFactory
+     * @param ZendClientFactory $httpClientFactory
      * @param EncryptorInterface $encryptor
      */
     public function __construct(
         CurrencyFactory $currencyFactory,
         ScopeConfig $scopeConfig,
-        LaminasClientFactory $httpClientFactory,
+        ZendClientFactory $httpClientFactory,
         EncryptorInterface $encryptor
     ) {
         parent::__construct($currencyFactory);
@@ -205,7 +205,7 @@ class CurrencyApi extends AbstractImport
 
         try {
             $httpClient->setUri($url);
-            $httpClient->setOptions(
+            $httpClient->setConfig(
                 [
                     'timeout' => $this->scopeConfig->getValue(
                         self::CONFIG_PATH_TIMEOUT,
@@ -214,7 +214,7 @@ class CurrencyApi extends AbstractImport
                 ]
             );
             $httpClient->setMethod(Request::METHOD_GET);
-            $jsonResponse = $httpClient->send()->getBody();
+            $jsonResponse = $httpClient->request()->getBody();
 
             $response = json_decode($jsonResponse, true) ?: [];
         } catch (Exception $e) {
@@ -262,3 +262,4 @@ class CurrencyApi extends AbstractImport
         return 1;
     }
 }
+
